@@ -1,0 +1,475 @@
+
+        /* CSS Variables for easy color changes */
+        :root {
+            --bg-color: #f4f7f6; /* A light, soft gray */
+            --navbar-bg: #ffffff;
+            --content-bg: #ffffff;
+            --primary-text: #111827; /* Dark gray */
+            --secondary-text: #4B5563; /* Medium gray */
+            --accent-color: #007BFF; /* A professional blue */
+            --border-color: #e5e7eb;
+        }
+
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--primary-text);
+            /* Add padding to the top of the body */
+            /* This is equal to the height of the navbar */
+            padding-top: 70px; 
+        }
+
+        /* --- Top Navigation Bar --- */
+        .navbar {
+            height: 70px;
+            width: 100%;
+            background-color: var(--navbar-bg);
+            border-bottom: 1px solid var(--border-color);
+            
+            /* Fixed position */
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+
+            /* Flex layout */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+        }
+        
+        .nav-left h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-text);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons button {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--secondary-text);
+            
+            border: none;
+            border-radius: 8px;
+            background-color: transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-buttons button:hover {
+            background-color: var(--bg-color); /* Light gray hover */
+            color: var(--primary-text);
+        }
+
+        /* The 'active' class is added by JavaScript */
+        .nav-buttons button.active {
+            background-color: var(--accent-color);
+            color: #ffffff;
+        }
+
+        /* Social Links in Navbar */
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-left: 1rem; /* Space from buttons */
+        }
+        
+        .social-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--secondary-text);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+
+        /* --- Main Content Area --- */
+        .content-area {
+            /* This centers the content and gives it a max width */
+            max-width: 960px;
+            margin: 0 auto; /* Center the container */
+            padding: 2rem;
+        }
+
+        /* Page switching logic */
+        .page {
+            display: none; /* All pages hidden by default */
+            background-color: var(--content-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .page.active {
+            display: block; /* Show only the active page */
+        }
+
+        /* --- Content Styling --- */
+        .page h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .content-section {
+            margin-bottom: 2.5rem;
+        }
+        
+        /* Clearfix for sections that only contain floats */
+        .content-section:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .content-section h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-text);
+            margin-bottom: 1.5rem;
+        }
+
+        /* For text blocks like Objective */
+        .text-block p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--secondary-text);
+        }
+
+        /* For list items like Skills, Interests */
+        .list-block ul {
+            list-style-type: disc;
+            list-style-position: outside;
+            padding-left: 1.5rem;
+        }
+
+        .list-block li {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--secondary-text);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Specific styling for resume items */
+        .resume-item {
+            /* Removed background and border, page has it now */
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px dashed var(--border-color);
+        }
+        .resume-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap; /* For mobile */
+        }
+
+        .item-header h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-text);
+        }
+
+        .item-header span {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--secondary-text);
+            white-space: nowrap;
+        }
+
+        .item-subheader {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--secondary-text);
+            margin-top: 0.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .item-description {
+            font-size: 1rem;
+            color: var(--secondary-text);
+            line-height: 1.6;
+        }
+
+        /* Styling for skills */
+        .skills-category {
+            margin-bottom: 1.5rem;
+        }
+
+        .skills-category strong {
+            display: block;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary-text);
+            margin-bottom: 0.75rem;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skills-list span {
+            background-color: var(--bg-color);
+            color: var(--secondary-text);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        /* --- Contact Info (In Bio Page) --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .contact-grid p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        .contact-grid strong {
+            color: var(--primary-text);
+        }
+        .contact-grid a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        .contact-grid a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                height: auto;
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+            body {
+                /* Adjust top padding for new navbar height */
+                padding-top: 140px; 
+            }
+            .nav-right {
+                flex-direction: column;
+                gap: 0.5rem;
+                width: 100%;
+            }
+            .nav-buttons {
+                display: flex;
+                justify-content: space-around;
+                width: 100%;
+            }
+            .social-links {
+                justify-content: center;
+                width: 100%;
+                margin-left: 0;
+                padding-top: 0.5rem;
+                border-top: 1px solid var(--border-color);
+            }
+            
+            .content-area {
+                padding: 1rem;
+            }
+            
+            .page {
+                padding: 1.5rem;
+            }
+
+            .page h2 {
+                font-size: 2rem;
+            }
+            .item-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    
+
+/* -------- BIO HEADER EXACT LIKE SCREENSHOT -------- */
+
+.bio-title {
+    font-size: 20px;
+    font-weight: 700;
+    border-left: 4px solid #000;
+    padding-left: 10px;
+    margin-bottom: 18px;
+}
+
+/* Wrapper to keep layout spacing consistent */
+.bio-header-wrapper {
+    margin-bottom: 18px;
+}
+
+.bio-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+/* Circle photo */
+.bio-photo {
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #d9e4f2;
+    border: 4px solid #fff;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.07);
+}
+.bio-photo img {
+    width: 100%;
+    height: 140%;
+    object-fit: cover;
+}
+
+/* Content beside image */
+.bio-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.bio-name {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.bio-role {
+    margin: 0;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+/* Contact 2-column grid (exact as screenshot) */
+.bio-contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(180px, 1fr));
+    gap: 4px 20px;
+    margin-top: 6px;
+}
+.bio-contact-grid a {
+    color: #0b5fe0;
+    text-decoration: none;
+}
+.bio-contact-grid a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 650px) {
+    .bio-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .bio-contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* container: image left + details right */
+.bio-container {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 18px;
+}
+
+/* circular profile image */
+.bio-photo {
+    width: 230px;
+    height: 210px;
+    border-radius: 100%;
+    overflow: hidden;
+    border: 4px solid #ffffff;
+    box-shadow: 0px 8px 22px rgba(0, 0, 0, 0.08);
+}
+
+.bio-photo img {
+    width: 100%;
+    height: 128%;
+    object-fit: cover;
+}
+
+/* text section */
+.bio-details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.bio-name {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.bio-role {
+    margin: 0;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+/* contact 2-column grid */
+.bio-contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(180px, 1fr));
+    gap: 6px 20px;
+}
+
+.bio-contact-grid a {
+    color: #0b5fe0;
+    text-decoration: none;
+}
+
+.bio-contact-grid a:hover {
+    text-decoration: underline;
+}
+
+/* responsive */
+@media (max-width: 640px) {
+    .bio-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .bio-contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
